@@ -75,4 +75,3 @@ insert into customers (first_name, last_name, email, gender) values ('Padget', '
 insert into customers (first_name, last_name, email, gender) values ('Genna', 'Alban', 'galban1c@edublogs.org', 'Bigender');
 insert into customers (first_name, last_name, email, gender) values ('Shina', 'Ughi', 'sughi1d@amazonaws.com', 'Female');
 
-SELECT * FROM customers;

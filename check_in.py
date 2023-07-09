@@ -38,4 +38,4 @@ def check_in(member_id):
             print("PostgreSQL connection is closed")    
 
 
-check_in(50)            
+check_in(5)            

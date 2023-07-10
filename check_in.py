@@ -1,7 +1,7 @@
 import psycopg2
 from config import config
 from configparser import ConfigParser
-from datetime import datetime, timezone
+from datetime import datetime, timezone, date
 
 def check_in(member_id):
     try: 
@@ -17,10 +17,11 @@ def check_in(member_id):
 
         if customer_data:
             account_id, first_name, last_name = customer_data 
-        
+
+            date_now = date.today().strftime('%Y-%m-%d')
             current_timestamp =datetime.now(timezone.utc)
-            insert_query = ''' INSERT INTO check_in(account_id, first_name, last_name, check_in) VALUES(%s,%s,%s,%s)'''
-            cur.execute(insert_query, (account_id, first_name, last_name, current_timestamp))
+            insert_query = ''' INSERT INTO check_in(date_timestamp, account_id, first_name, last_name, check_in) VALUES(%s,%s,%s,%s,%s)'''
+            cur.execute(insert_query, (date_now, account_id, first_name, last_name, current_timestamp))
 
                     
         conn.commit()

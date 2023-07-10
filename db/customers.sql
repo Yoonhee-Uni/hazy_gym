@@ -1,9 +1,9 @@
-DROP DATABASE IF EXISTS hazygym;
+-- DROP DATABASE IF EXISTS hazygym;
 CREATE DATABASE hazygym;
 
 \c hazygym
 
-DROP TABLE IF EXISTS customers;
+-- DROP TABLE IF EXISTS customers;
 CREATE TABLE customers (
 	account_id SERIAL PRIMARY KEY,
 	first_name VARCHAR(50),
@@ -16,6 +16,8 @@ CREATE TABLE customers (
 
 
 CREATE TABLE check_in(
+	date_timestamp DATE,
+	-- date_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	account_id INT REFERENCES customers(account_id),
 	first_name VARCHAR(50),
 	last_name VARCHAR(50),
@@ -75,3 +77,4 @@ insert into customers (first_name, last_name, email, gender) values ('Padget', '
 insert into customers (first_name, last_name, email, gender) values ('Genna', 'Alban', 'galban1c@edublogs.org', 'Bigender');
 insert into customers (first_name, last_name, email, gender) values ('Shina', 'Ughi', 'sughi1d@amazonaws.com', 'Female');
 
+SELECT * FROM check_in;

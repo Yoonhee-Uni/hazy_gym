@@ -17,7 +17,6 @@ CREATE TABLE customers (
 
 CREATE TABLE check_in(
 	date_timestamp DATE,
-	-- date_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	account_id INT REFERENCES customers(account_id),
 	first_name VARCHAR(50),
 	last_name VARCHAR(50),
@@ -25,6 +24,18 @@ CREATE TABLE check_in(
 	FOREIGN KEY(account_id) REFERENCES customers(account_id),
 	FOREIGN KEY(first_name,last_name) REFERENCES customers(first_name, last_name)
 );
+
+CREATE TABLE check_out(
+	date_timestamp DATE,
+	account_id INT REFERENCES customers(account_id),
+	first_name VARCHAR(50),
+	last_name VARCHAR(50),
+	check_out TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	FOREIGN KEY(account_id) REFERENCES customers(account_id),
+	FOREIGN KEY(first_name,last_name) REFERENCES customers(first_name, last_name)
+);
+
+
 
 insert into customers (first_name, last_name, email, gender) values ('Wadsworth', 'Bellay', 'wbellay0@devhub.com', 'Male');
 insert into customers (first_name, last_name, email, gender) values ('Wallas', 'Edington', 'wedington1@bandcamp.com', 'Male');
@@ -78,3 +89,12 @@ insert into customers (first_name, last_name, email, gender) values ('Genna', 'A
 insert into customers (first_name, last_name, email, gender) values ('Shina', 'Ughi', 'sughi1d@amazonaws.com', 'Female');
 
 SELECT * FROM check_in;
+SELECT * FROM check_out;
+SELECT * FROM customers;
+
+SELECT  check_in.date_timestamp, check_in.account_id, check_in.first_name, check_in.last_name, check_in, check_out
+FROM customers
+JOIN check_in
+ON customers.account_id = check_in.account_id
+LEFT JOIN check_out
+ON check_in.account_id = check_out.account_id ;
